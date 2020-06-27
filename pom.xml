@@ -3,24 +3,24 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
  
-    <groupId>de.dralle</groupId>
-    <artifactId>mathparser-all</artifactId>
+    <groupId>de.dralle.mathparser</groupId>
+    <artifactId>all</artifactId>
     <version>0.1.10</version>
     <packaging>pom</packaging>
  
-    <name>MathParserServer-all</name>
-    <url>https://www.fh-bielefeld.de</url>
+    <name>mathparser-all</name>
  
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
  		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
       </properties>
       
+      <!-- Folder names, not project names -->
       <modules>
-      	<module>MathParserServer_grammar</module>
-      	<module>MathParserServer_term</module>
-      	<module>MathParserServer_gen</module>
-      	<module>MathParserServer_base</module>
-      	<module>MathParserServer_dev</module>
+      	<module>grammar</module>
+      	<module>term</module>
+      	<module>interface</module>
+      	<module>services</module>
+      	<module>deploy-debug</module>
       </modules>
 </project>
