@@ -1,0 +1,6 @@
+1: Anzahl unterschiedlicher Variablen
+2: Wenn gleichviele Variablen -> höchste Potenz
+3: Wenn höchste Potenz gleich -> Summe der Exponenten
+4: Wenn 3 gleich: Namen der Variablen
+5: Wenn 4 gleich -> Anzahle Konstanten (+Zahlen)
+6: Wenn 5 gleich: Größe der Zahlen

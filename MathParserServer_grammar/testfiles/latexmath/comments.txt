@@ -1,0 +1,5 @@
+% $ a $ % deactivated
+% full line comment
+$ a $ %comment after expression
+% comment % after comment
+

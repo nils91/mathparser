@@ -1,0 +1,16 @@
+#eclipse
+.project
+.classpath
+/.settings/
+
+#java
+*.class
+
+#maven
+/target/
+
+#antlr4
+/target/generated-sources/antlr4/
+
+#other
+*.bak

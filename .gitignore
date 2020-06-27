@@ -1,0 +1,17 @@
+#eclipse
+.project
+/.settings/
+
+#java
+*.class
+
+#maven
+/target/
+
+#logs
+/logs/
+*.log
+*.log.[0-9]
+
+#other
+*.bak

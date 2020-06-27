@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+	   xmlns:int="http://www.springframework.org/schema/integration"
+	   xmlns:int-sftp="http://www.springframework.org/schema/integration/sftp"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+        				   http://www.springframework.org/schema/jdbc 
+            			   http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd">
+
+    <context:component-scan base-package="de.dralle.mathparser"/>
+
+	<!-- 
+    <context:component-scan base-package="*">
+    	<context:exclude-filter type="regex" expression="*"/>
+    	<context:exclude-filter type="regex" expression="*"/>
+    </context:component-scan>
+	 -->
+
+    <mvc:annotation-driven />
+    
+    <!-- Configures the @Controller programming model-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <!-- Use the HibernateAware mapper instead of the default -->
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+
+    <!-- security interceptor: account for session timeouts of HTML and AJAX requests -->
+    <!-- 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean id="securityInterceptor" class="..." />
+        </mvc:interceptor>
+    </mvc:interceptors>  
+     -->
+    
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+				
+</beans>

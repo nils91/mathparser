@@ -1,0 +1,2 @@
+$ \frac{-b-\sqrt{b^2-4ac}}{2a} $
+$ \frac{-b+\sqrt{b^2-4ac}}{2a} $

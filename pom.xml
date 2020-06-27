@@ -1,0 +1,26 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+ 
+    <groupId>de.dralle</groupId>
+    <artifactId>mathparser-all</artifactId>
+    <version>0.1.10</version>
+    <packaging>pom</packaging>
+ 
+    <name>MathParserServer-all</name>
+    <url>https://www.fh-bielefeld.de</url>
+ 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+ 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+      </properties>
+      
+      <modules>
+      	<module>MathParserServer_grammar</module>
+      	<module>MathParserServer_term</module>
+      	<module>MathParserServer_gen</module>
+      	<module>MathParserServer_base</module>
+      	<module>MathParserServer_dev</module>
+      </modules>
+</project>

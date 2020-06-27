@@ -1,0 +1,953 @@
+openapi: 3.0.0
+info:
+  description: >
+    Describes how UI and Backend should interact. </br>
+    Version history:
+     - 0.0.1: Initial version
+     - 0.0.2: Added /test/ping/
+     - 0.0.3: Added /expression/constants/
+     - 0.0.4: Used tags
+     - 0.0.5: Added /expression/identifiers/
+     - 0.0.6: Added /expression/get_numerical_result/
+     - 0.0.7: added /equation/get_numerical_correctness/
+     - 0.0.8: identifierTestRange in NumericalCheckRequest not optional
+     - 0.0.9: new structure to return constants
+     - 0.0.10: improved return codes NumericalCheckRespone and NumericalResultResponse
+     - 0.0.11: Request to check symbolic equality on equations
+     - 0.0.12: Request to check symbolic equality on expressions
+     - 0.0.13: Contact email changed
+     - 0.1.0: Request to apply equivalency transform to an equation
+     - 0.1.1: Check the result of an potential equivalency transform
+     - 0.1.2: Request validation fix EquationTransformRequest
+     - 0.1.3: Reusable schema definitions for Equation-, Expression- and Rule-strings
+     - 0.1.4: Rule mandatory for apply_transform and check requests, improved return codes TransformCheckResponse
+     - 0.1.5: Reverting the rule changes from 0.1.4
+  version: 0.1.5
+  title: MathParser Interface
+  contact:
+    name: Nils Dralle
+    email: nils.91@googlemail.com
+servers:
+- url: http:/localhost:8080/MathParserDev/
+  description: Local testing
+
+paths:
+  /test/echo:
+    post:
+      summary: Simple communication test.
+      description: >
+        Returns the given message.
+      security:
+      - BasicAuthentication : []
+      tags: [Test]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageEchoRequest'
+      responses:
+        '200':
+          description: |
+            Structure to return the message.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageEchoResponse'
+        '401':
+          description: |
+            API-Token not recognized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: |
+            Technical error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: |
+            Other error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /test/ping:
+    post:
+      summary: Very simple communication test.
+      description: >
+        Simple ping.
+      security:
+      - BasicAuthentication : []
+      tags: [Test]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PingRequest'
+      responses:
+        '200':
+          description: |
+            Structure to acknowledge the ping.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PingResponse'
+        '401':
+          description: |
+            API-Token not recognized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: |
+            Technical error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: |
+            Other error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /expression/syntax:
+    post:
+      summary: Expression syntax check.
+      description: >
+         Checks the syntax for a given expression.
+      security:
+      - BasicAuthentication : []
+      tags: [Expression]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpressionSyntaxCheckRequest'
+      responses:
+        '200':
+          description: |
+            Structure to return the syntax check result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpressionSyntaxCheckResponse'
+        '401':
+          description: |
+            API-Token not recognized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: |
+            Technical error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: |
+            Other error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /equation/syntax:
+    post:
+      summary: Expression syntax check.
+      description: >
+         Checks the syntax for a given equation.
+      security:
+      - BasicAuthentication : []
+      tags: [Equation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EquationSyntaxCheckRequest'
+      responses:
+        '200':
+          description: |
+            Structure to return the syntax check result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EquationSyntaxCheckResponse'
+        '401':
+          description: |
+            API-Token not recognized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: |
+            Technical error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: |
+            Other error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /expression/constants:
+    post:
+      summary: Get all constants in an expression.
+      description: >
+         Currently only \pi and \epsilon
+      security:
+      - BasicAuthentication : []
+      tags: [Expression]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpressionConstantsRequest'
+      responses:
+        '200':
+          description: |
+            Structure to return a list of all constants.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpressionConstantsResponse'
+        '401':
+          description: |
+            API-Token not recognized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: |
+            Technical error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: |
+            Other error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /expression/identifiers:
+    post:
+      summary: Get all identifiers in an expression.
+      description: >
+         Return a list of all identifiers in an expression, with how often they are seen.
+      security:
+      - BasicAuthentication : []
+      tags: [Expression]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpressionIdentifiersRequest'
+      responses:
+        '200':
+          description: |
+            Structure to return a list of all identifiers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpressionIdentifiersResponse'
+        '401':
+          description: |
+            API-Token not recognized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: |
+            Technical error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: |
+            Other error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /expression/get_numerical_result:
+    post:
+      summary: Calculate the numerical result of an expression.
+      description: >
+         Calculate the numerical result of an expression.
+      security:
+      - BasicAuthentication : []
+      tags: [Expression]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NumericalResultRequest'
+      responses:
+        '200':
+          description: |
+            Structure to return the numerical result of an expression.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NumericalResultResponse'
+        '401':
+          description: |
+            API-Token not recognized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: |
+            Technical error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: |
+            Other error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /equation/get_numerical_correctness:
+    post:
+      summary: Calculate the numerical result of an equation.
+      description: >
+         Calculate the numerical result of an expression. Returns a value between 0 and 1 of how many of the numerical tests performened are true.
+      security:
+      - BasicAuthentication : []
+      tags: [Equation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NumericalCheckRequest'
+      responses:
+        '200':
+          description: |
+            Structure to return the result of the numerical check.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NumericalCheckResponse'
+        '401':
+          description: |
+            API-Token not recognized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: |
+            Technical error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: |
+            Other error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /equation/check_symbolic_equality:
+    post:
+      summary: Checks symbolic equality for a given equation.
+      description: >
+         Checks symbolic equality for a given equation. The equation needs to be an equality, otherwise the check fails.
+      security:
+      - BasicAuthentication : []
+      tags: [Equation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SymbolicEquationCheckRequest'
+      responses:
+        '200':
+          description: |
+            Structure to return the result of the symbolic check.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SymbolicEquationCheckResponse'
+        '401':
+          description: |
+            API-Token not recognized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: |
+            Technical error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: |
+            Other error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /expression/check_symbolic_equality:
+    post:
+      summary: Checks symbolic equality for two given expressions
+      description: >
+         Checks symbolic equality for for two given expressions.
+      security:
+      - BasicAuthentication : []
+      tags: [Expression]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SymbolicExpressionCheckRequest'
+      responses:
+        '200':
+          description: |
+            Structure to return the result of the symbolic check.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SymbolicExpressionCheckResponse'
+        '401':
+          description: |
+            API-Token not recognized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: |
+            Technical error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: |
+            Other error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /equation/apply_transform:
+    post:
+      summary: Equation equivalency transform.
+      description: >
+         Performs an equivalency transform on the given equation and returns the result. The result is generated from the servers internal represantation of the equation and therefore might not resamble the expected appearance.
+      security:
+      - BasicAuthentication : []
+      tags: [Equation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EquationTransformRequest'
+      responses:
+        '200':
+          description: |
+            Structure to return the result of the result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EquationTransformResponse'
+        '401':
+          description: |
+            API-Token not recognized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: |
+            Technical error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: |
+            Other error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /equation/apply_transform_check:
+    post:
+      summary: Equation equivalency transform check.
+      description: >
+         Performs an equivalency transform on the given equation and then compares it to the given result candidate equation.
+      security:
+      - BasicAuthentication : []
+      tags: [Equation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EquationTransformCheckRequest'
+      responses:
+        '200':
+          description: |
+            Structure to return the result of the equivalency check.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EquationTransformCheckResponse'
+        '401':
+          description: |
+            API-Token not recognized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: |
+            Technical error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: |
+            Other error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      description: |
+        API-Token used to identify the client.
+      name: api_key
+      in: header
+    BasicAuthentication:
+      type: http
+      description: |
+        Basic authentication.
+      scheme: basic
+    SessionToken:
+      type: apiKey
+      description: >
+        Session-Token.
+      name: session_token
+      in: header
+  schemas:
+    TestString:
+      type: string
+      pattern: '.+'
+      description: >
+        For the echo-test.
+    EquationString:
+      type: string
+      minLength: 3
+    ExpressionString:
+      type: string
+      minLength: 1
+    RuleString:
+      type: string
+      description: A rule has the form [Expr] \to [Expr].
+    MessageEchoRequest:
+      required:
+      - message
+      properties:
+        message:
+          $ref: '#/components/schemas/TestString'
+    MessageEchoResponse:
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: |
+            Internal Response-Code.
+        message:
+          type: string
+          description: |
+            Originally given message.
+    PingRequest:
+      properties:
+        id:
+          type: integer
+    PingResponse:
+      required:
+      - code
+      properties:
+        id:
+          type: integer
+        code:
+          type: integer
+          format: int32
+          description: |
+            Internal Response-Code.
+    ExpressionSyntaxCheckRequest:
+      required:
+      - expression
+      properties:
+        expression:
+          $ref: '#/components/schemas/ExpressionString'
+    ExpressionSyntaxCheckResponse:
+      required:
+      - code
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: |
+            Internal Response-Code.
+            0 - Parsing success.
+            1 - Some problem.
+        expression:
+          type: string
+          description: |
+              Originally given expression after parsing.
+        error:
+          type: string
+    EquationSyntaxCheckRequest:
+      required:
+      - equation
+      properties:
+        equation:
+          $ref: '#/components/schemas/EquationString'
+    EquationSyntaxCheckResponse:
+      required:
+      - code
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: |
+            Internal Response-Code.
+            0 - Parsing success.
+            1 - Some problem.
+        equation:
+          type: string
+          description: |
+            Originally given equation after parsing.
+        error:
+          type: string
+    SymbolicEquationCheckRequest:
+      required:
+      - equation
+      properties:
+        equation:
+          $ref: '#/components/schemas/EquationString'
+    SymbolicEquationCheckResponse:
+      required:
+      - code
+      - result
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: |
+            Internal Response-Code.
+            0 - Success. (Check result for the result of the check)
+            1 - Parsing problem.
+            2 - Equation of wrong type.
+            3 - Problem while applying check rules.
+        result:
+          type: boolean
+          description: Result of the symbolic equality check.
+        message:
+          type: string
+    Error:
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: |
+            Some error code.
+        message:
+          type: string
+          description: |
+            Description of the error.
+    ExpressionConstantsRequest:
+      required:
+      - expression
+      properties:
+        expression:
+          $ref: '#/components/schemas/ExpressionString'
+    ExpressionConstantsResponse:
+      required:
+      - code
+      properties:
+        constants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Constant'
+        code:
+          type: integer
+          format: int32
+          description: |
+            Internal Response-Code.
+            0 - Parsing success.
+            1 - Some problem.
+    ExpressionIdentifiersRequest:
+      required:
+      - expression
+      properties:
+        expression:
+          $ref: '#/components/schemas/ExpressionString'
+    ExpressionIdentifiersResponse:
+      required:
+      - code
+      properties:
+        identifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+        code:
+          type: integer
+          format: int32
+          description: |
+            Internal Response-Code.
+            0 - Parsing success.
+            1 - Some problem.
+    NumericalResultRequest:
+      required:
+      - expression
+      properties:
+        expression:
+         $ref: '#/components/schemas/ExpressionString'
+        constants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConstantValuePreset'
+        identifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentifierValuePreset'
+    NumericalResultResponse:
+      required:
+      - code
+      properties:
+        result:
+          type: number
+          format: double
+        message:
+          type: string
+        code:
+          type: integer
+          format: int32
+          description: |
+            Internal Response-Code.
+            0 - Success.
+            1 - Problem while parsing expression.
+            2 - Problem while parsing value presets.
+            3 - Preset value for identifer missing.
+    NumericalCheckRequest:
+      required:
+      - equation
+      - identifierTestRange
+      properties:
+        equation:
+          $ref: '#/components/schemas/EquationString'
+        identifierTestRange:
+          type: object
+          properties:
+            min:
+              type: number
+            max:
+              type: number
+            step:
+              type: number
+              minimum: 0
+              exclusiveMinimum: true
+          required:
+          - min
+          - max
+          - step
+        numericalErrorThreshold:
+          type: number
+          format: double
+          minimum: 0
+          exclusiveMinimum: false
+          description: 'Maximum numerical error thats allowed to still count as true'
+        constants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConstantValuePreset'
+    NumericalCheckResponse:
+      required:
+      - code
+      properties:
+        result:
+          type: number
+          format: double
+          description: 'Value between 0 and 1 of how many tests were true'
+        message:
+          type: string
+        code:
+          type: integer
+          format: int32
+          description: |
+            Internal Response-Code.
+            0 - Success.
+            1 - Problem while parsing equation.
+            2 - Problem while parsing value presets.
+            3 - Input value problem.
+            4 - Does not compute.
+    SymbolicExpressionCheckRequest:
+      required:
+      - leftExpression
+      - rightExpression
+      properties:
+        leftExpression:
+          $ref: '#/components/schemas/ExpressionString'
+        rightExpression:
+          $ref: '#/components/schemas/ExpressionString'
+    SymbolicExpressionCheckResponse:
+      required:
+      - code
+      - result
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: |
+            Internal Response-Code.
+            0 - Success. (Check result for the result of the check)
+            1 - Parsing problem.
+            2 - Problem while applying check rules.
+        result:
+          type: boolean
+          description: Result of the symbolic equality check.
+        message:
+          type: string   
+    EquationTransformRequest:
+      required:
+      - equation
+      properties:
+        equation:
+          $ref: '#/components/schemas/EquationString'
+        rule:
+          $ref: '#/components/schemas/RuleString'
+    EquationTransformResponse:
+      required:
+      - code
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: |
+            Internal Response-Code.
+            0 - Success.
+            1 - Equation parsing problem.
+            2 - Rule parsing problem.
+            3 - Problem while applying the rule.
+        result:
+          type: string
+        message:
+          type: string   
+    EquationTransformCheckRequest:
+      required:
+      - startEquation
+      - targetEquation
+      properties:
+        startEquation:
+          $ref: '#/components/schemas/EquationString'
+        rule:
+          $ref: '#/components/schemas/RuleString'
+        targetEquation:
+          $ref: '#/components/schemas/EquationString'
+    EquationTransformCheckResponse:
+      required:
+      - code
+      properties:
+        code:
+          type: integer
+          format: int32
+          description: |
+            Internal Response-Code.
+            0 - Success.
+            1 - Start equation parsing problem.
+            2 - Target equation parsing problem.
+            3 - Rule parsing problem.
+            4 - Problem during equivalency check.
+        result:
+          type: boolean
+        message:
+          type: string   
+    ConstantValuePreset:
+      required:
+      - name
+      - value
+      properties:
+        name:
+          type: string
+        index:
+          type: string
+        value:
+          type: number
+          format: double
+    IdentifierValuePreset:
+      required:
+      - name
+      - value
+      properties:
+        name:
+          type: string
+        index:
+          type: string
+        value:
+          type: number
+          format: double
+    Identifier:
+      required:
+       - name
+      properties:
+        name:
+          type: string
+          minLength: 1
+        index:
+          type: string
+    Constant:
+      required:
+       - name
+      properties:
+        name:
+          type: string
+          minLength: 1
+        index:
+          type: string
