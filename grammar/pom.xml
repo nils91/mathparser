@@ -71,7 +71,7 @@
 			<plugin>
 				<groupId>com.khubla.antlr</groupId>
 				<artifactId>antlr4test-maven-plugin</artifactId>
-				<version>1.11</version>
+				<version>${antlr4test-maven-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>latexmath</id>
@@ -127,6 +127,7 @@
 		<antlr4.version>4.8</antlr4.version>
 		<antlr4.visitor>true</antlr4.visitor>
 		<antlr4.listener>true</antlr4.listener>
+		<antlr4test-maven-plugin.version>1.14</antlr4test-maven-plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
