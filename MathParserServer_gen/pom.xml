@@ -14,7 +14,7 @@
 	<groupId>de.dralle.mathparser</groupId>
 	<artifactId>gen</artifactId>
 	<packaging>jar</packaging>
-	<name>MathParserServer-gen</name>
+	<name>mathparser-gen</name>
 	<version>0.1.5</version>
 
 	<licenses>

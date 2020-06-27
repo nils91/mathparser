@@ -14,7 +14,7 @@
 	<groupId>de.dralle.mathparser</groupId>
 	<artifactId>dev</artifactId>
 	<version>0.0.1</version>
-	<name>MathParserServer-dev</name>
+	<name>mathparser-dev</name>
 	<packaging>war</packaging>
 
 	<properties>

@@ -14,7 +14,7 @@
 	<groupId>de.dralle.mathparser</groupId>
 	<artifactId>term</artifactId>
 	<packaging>jar</packaging>
-	<name>MathParserServer-term</name>
+	<name>mathparser-term</name>
 	<version>0.1.10</version>
 
 	<licenses>
