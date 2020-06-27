@@ -12,9 +12,9 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.dralle.mathparser</groupId>
-	<artifactId>dev</artifactId>
+	<artifactId>deploy-debug</artifactId>
 	<version>0.0.1</version>
-	<name>mathparser-dev</name>
+	<name>mathparser-deploy-debug</name>
 	<packaging>war</packaging>
 
 	<properties>
@@ -199,7 +199,7 @@
 		</dependency>
 		<dependency>
 			<groupId>de.dralle.mathparser</groupId>
-			<artifactId>base</artifactId>
+			<artifactId>services</artifactId>
 			<version>0.0.6</version>
 		</dependency>
 	</dependencies>
