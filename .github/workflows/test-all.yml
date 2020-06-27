@@ -1,8 +1,6 @@
 name: "Test all"
 on:
-    push:
-        branches:
-          - master
+    [push]
 jobs:
   build:
     name: run_tests_all
