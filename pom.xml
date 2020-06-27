@@ -15,6 +15,7 @@
  		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
       </properties>
       
+      <!-- Folder names, not project names -->
       <modules>
       	<module>MathParserServer_grammar</module>
       	<module>MathParserServer_term</module>
