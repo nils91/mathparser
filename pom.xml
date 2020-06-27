@@ -17,10 +17,10 @@
       
       <!-- Folder names, not project names -->
       <modules>
-      	<module>MathParserServer_grammar</module>
-      	<module>MathParserServer_term</module>
-      	<module>MathParserServer_gen</module>
-      	<module>MathParserServer_base</module>
-      	<module>MathParserServer_dev</module>
+      	<module>grammar</module>
+      	<module>term</module>
+      	<module>interface</module>
+      	<module>services</module>
+      	<module>deploy-debug</module>
       </modules>
 </project>
