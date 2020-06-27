@@ -1,15 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	
-	<!--The identifier of the parent POM-->
-    <parent>
-        <groupId>de.dralle</groupId>
-        <artifactId>mathparser-all</artifactId>
-        <version>0.1.10</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
-    
+
+	<!--The identifier of the parent POM -->
+	<parent>
+		<groupId>de.dralle.mathparser</groupId>
+		<artifactId>all</artifactId>
+		<version>0.1.10</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.dralle.mathparser</groupId>
 	<artifactId>gen</artifactId>
@@ -45,7 +45,7 @@
 				<version>3.0.8</version>
 				<executions>
 					<execution>
-					<phase>generate-sources</phase>
+						<phase>generate-sources</phase>
 						<goals>
 							<goal>generate</goal>
 						</goals>
@@ -55,11 +55,11 @@
 							<generateSupportingFiles>false</generateSupportingFiles>
 							<language>jaxrs-spec</language>
 							<configOptions>
- 					          <useBeanValidation>true</useBeanValidation>
- 					          <performBeanValidation>true</performBeanValidation>
-					          <dateLibrary>java8</dateLibrary>
-					          <java8>true</java8>
-					        </configOptions>
+								<useBeanValidation>true</useBeanValidation>
+								<performBeanValidation>true</performBeanValidation>
+								<dateLibrary>java8</dateLibrary>
+								<java8>true</java8>
+							</configOptions>
 						</configuration>
 					</execution>
 				</executions>
@@ -107,11 +107,11 @@
 			<groupId>io.swagger.core.v3</groupId>
 			<artifactId>swagger-jaxrs2-servlet-initializer</artifactId>
 			<version>${swagger-core-version}</version>
-		</dependency>	
+		</dependency>
 		<dependency>
-		    <groupId>io.swagger.core.v3</groupId>
-		    <artifactId>swagger-annotations</artifactId>
-		    <version>${swagger-core-version}</version>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${swagger-core-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -210,6 +210,6 @@
 		<beanvalidation-version>1.1.0.Final</beanvalidation-version>
 		<interface-file>interface/interface.yaml</interface-file>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
- 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 </project>

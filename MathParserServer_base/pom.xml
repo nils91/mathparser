@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
-	<!--The identifier of the parent POM-->
-    <parent>
-        <groupId>de.dralle</groupId>
-        <artifactId>mathparser-all</artifactId>
-        <version>0.1.10</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
- 
-	
+
+	<!--The identifier of the parent POM -->
+	<parent>
+		<groupId>de.dralle.mathparser</groupId>
+		<artifactId>all</artifactId>
+		<version>0.1.10</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+
 	<modelVersion>4.0.0</modelVersion>
 	<name>MathParserServer-base</name>
 	<groupId>de.dralle.mathparser</groupId>
