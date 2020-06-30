@@ -27,6 +27,7 @@ import de.dralle.mathparser.Functions;
 import de.dralle.mathparser.NumericalEquationUtil;
 import de.dralle.mathparser.SymbolIdentifier;
 import de.dralle.mathparser.SymbolTable;
+import de.dralle.mathparser.SymbolicEqualityUtil;
 import de.dralle.mathparser.TransformationRuleParser;
 import de.dralle.mathparser.nodes.AbsoluteNode;
 import de.dralle.mathparser.nodes.AcosNode;
@@ -1046,5 +1047,9 @@ class IssueTests {
 		ExpressionNode start =  ExpressionParser.buildExpressionTreeFromString("x*2+0");
 		GeneralTransformationRule embRule2 = TransformationRuleBuilder.buildRuleFromString("0+a -> a");
 		assertFalse(embRule2.isPossible(start));
+	}
+	@Test
+	void issue3() {
+		assertFalse(SymbolicEqualityUtil.checkSymbolicEquality("-(a+b)=a-b", SymbolicEqualityUtil.buildSimplificationRule()));
 	}
 }
