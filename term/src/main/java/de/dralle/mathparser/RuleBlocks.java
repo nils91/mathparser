@@ -62,7 +62,7 @@ public class RuleBlocks {
 	 */
 	public static List<AbstractTransformationRule> buildNegativeSignReplacementRules() {
 		List<AbstractTransformationRule> tmp = new ArrayList<AbstractTransformationRule>();
-		tmp.add(TransformationRuleParser.buildTransformationRuleFromString("-(a+b)->a-b"));
+		tmp.add(TransformationRuleParser.buildTransformationRuleFromString("-(a+b)->-a-b"));
 		tmp.add(TransformationRuleParser.buildTransformationRuleFromString("a-b->a+-b"));
 		tmp.add(TransformationRuleParser.buildTransformationRuleFromString("a--b->a+b"));
 		// tmp.add(TransformationRuleParser.buildTransformationRuleFromString("--a->a"));
