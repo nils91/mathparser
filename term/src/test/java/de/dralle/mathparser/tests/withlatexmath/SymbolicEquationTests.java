@@ -177,4 +177,14 @@ public class SymbolicEquationTests {
 	void testSymbolicEqualityNeutralElementDivisionRemoval(String equation) {
 		assertTrue(SymbolicEqualityUtil.checkSymbolicEquality(equation, SymbolicEqualityUtil.buildSimplificationRule()));
 	}
+	
+	@ParameterizedTest
+	@ValueSource(strings = {
+			"-(a+b)=-a-b",
+			"-(x+y)=-x-y",
+			"-(x+5)=-x-5"}
+	)
+	void testSymbolicEqualityNegativeSignParenthesis(String equation) {
+		assertTrue(SymbolicEqualityUtil.checkSymbolicEquality(equation, SymbolicEqualityUtil.buildSimplificationRule()));
+	}
 }
