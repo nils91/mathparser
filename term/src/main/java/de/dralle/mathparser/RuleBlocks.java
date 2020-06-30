@@ -302,7 +302,7 @@ public class RuleBlocks {
 		tmp.add(TransformationRuleParser.buildTransformationRuleFromString("0+a->a"));
 		tmp.add(TransformationRuleParser.buildTransformationRuleFromString("a+0->a"));
 		tmp.add(TransformationRuleParser.buildTransformationRuleFromString("(a*b)/b->a"));
-		tmp.add(TransformationRuleParser.buildTransformationRuleFromString("(a/b)/b->a"));
+		tmp.add(TransformationRuleParser.buildTransformationRuleFromString("(a/b)*b->a"));
 
 		tmp.add(TransformationRuleParser.buildTransformationRuleFromString("\\ln{\\epsilon^a}->a"));
 		tmp.add(TransformationRuleParser.buildTransformationRuleFromString("\\epsilon^{\\log_{\\epsilon}{a}}->a"));
