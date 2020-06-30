@@ -167,4 +167,14 @@ public class SymbolicEquationTests {
 	void testSymbolicEqualityMisc(String equation) {
 		assertTrue(SymbolicEqualityUtil.checkSymbolicEquality(equation, SymbolicEqualityUtil.buildSimplificationRule()));
 	}
+	
+	@ParameterizedTest
+	@ValueSource(strings = {
+			"a/b*b=a",
+			"x/y*y=x",
+			"x/5*5=x"}
+	)
+	void testSymbolicEqualityNeutralElementDivisionRemoval(String equation) {
+		assertTrue(SymbolicEqualityUtil.checkSymbolicEquality(equation, SymbolicEqualityUtil.buildSimplificationRule()));
+	}
 }
