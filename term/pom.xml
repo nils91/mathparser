@@ -55,7 +55,7 @@
 				<version>3.0.0-M4</version>
 				<configuration>
 					<skipTests>false</skipTests>
-				</configuration>
+				</configuration> 
 			</plugin>
 		</plugins>
 	</build>
