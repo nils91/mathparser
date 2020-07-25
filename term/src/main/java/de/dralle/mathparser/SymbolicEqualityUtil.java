@@ -161,7 +161,7 @@ public class SymbolicEqualityUtil {
 			AbstractTransformationRule rule) {
 		EquationNode transformedStart = null;
 		if (rule != null) {
-			transformedStart = applyToBothSides(startEquation, rule, false, true);
+			transformedStart = equivalizationTransform(startEquation, rule);
 		}
 		if (transformedStart == null) {
 			transformedStart = startEquation;
