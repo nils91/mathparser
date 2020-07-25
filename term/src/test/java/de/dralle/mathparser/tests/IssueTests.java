@@ -42,6 +42,7 @@ import de.dralle.mathparser.nodes.CothNode;
 import de.dralle.mathparser.nodes.Degree2RadiansConversionNode;
 import de.dralle.mathparser.nodes.DeterminantNode;
 import de.dralle.mathparser.nodes.EqualityNode;
+import de.dralle.mathparser.nodes.EquationNode;
 import de.dralle.mathparser.nodes.ExpressionNode;
 import de.dralle.mathparser.nodes.FunctionNode;
 import de.dralle.mathparser.nodes.IntegerNode;
@@ -1051,5 +1052,12 @@ class IssueTests {
 	@Test
 	void issue3() {
 		assertFalse(SymbolicEqualityUtil.checkSymbolicEquality("-(a+b)=a-b", SymbolicEqualityUtil.buildSimplificationRule()));
+	}
+	@Test
+	void issue4() {
+		EquationNode start = EquationParser.buildEquationTreeFromString("1=1");
+		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("f->f*x");
+		EquationNode expected = EquationParser.buildEquationTreeFromString("1*x=1*x");
+		assertTrue(SymbolicEqualityUtil.checkEquivalizationTransform(start, expected, rule));
 	}
 }
