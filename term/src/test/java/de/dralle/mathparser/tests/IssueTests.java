@@ -72,6 +72,10 @@ import de.dralle.mathparser.rules.TransformationRuleBuilder;
 import de.dralle.mathparser.visitors.CalculateNumericalValueVisitor;
 
 /**
+ * All tests in here were used during development to test for a specific issue
+ * and fix bugs. All test with the suffix '_old' are tests referring to an old,
+ * private tracker.
+ * 
  * @author Nils Dralle
  *
  */
@@ -86,16 +90,16 @@ class IssueTests {
 		EquationParser.setParser(new LatexMathEquationParser());
 		TransformationRuleParser.setParser(new LatexMathTransformationRuleParser());
 	}
-	
+
 	@Test
-	void possible_issue() {
+	void possible_issue_old() {
 		ExpressionNode ex = ExpressionParser.buildExpressionTreeFromString("\\sin{-1}");
-		double r=ex.accept(new CalculateNumericalValueVisitor());
-		System.out.println(r);//should be -0.8414...
+		double r = ex.accept(new CalculateNumericalValueVisitor());
+		System.out.println(r);// should be -0.8414...
 	}
-	
+
 	@Test
-	void issue29() {
+	void issue29_old() {
 		ExpressionNode ex = ExpressionParser.buildExpressionTreeFromString("9.1");
 		if (ex instanceof RealNode) {
 			assertEquals(9.1, ((RealNode) ex).getValue().doubleValue());
@@ -105,7 +109,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue22() {
+	void issue22_old() {
 		ExpressionNode ex = ExpressionParser.buildExpressionTreeFromString("f*f+e");
 		SymbolTable st = SymbolTable.fromTree(ex);
 		assertEquals(2, st.getIdentifierCount("f", null));
@@ -114,7 +118,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue25() {
+	void issue25_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("a^n");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("a^{(n-1)}*a");
@@ -130,14 +134,14 @@ class IssueTests {
 	}
 
 	@Test
-	void issue31() {
+	void issue31_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode ex = ExpressionParser.buildExpressionTreeFromString("a^{(n-1)}*a");
 		assertNotNull(ex);
 	}
 
 	@Test
-	void issue32() {
+	void issue32_old() {
 		ExpressionNode ex = ExpressionParser.buildExpressionTreeFromString("a^n");
 		ReducePowerRule rule = new ReducePowerRule();
 		rule.setOnlyOnIntegers(false);
@@ -149,7 +153,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue30() {
+	void issue30_old() {
 		ExpressionNode ex = ExpressionParser.buildExpressionTreeFromString("a^n");
 		ReducePowerRule rule = new ReducePowerRule();
 		rule.setOnlyOnIntegers(false);
@@ -161,7 +165,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue27() {
+	void issue27_old() {
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("3x^2+5x^2");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("8x^2");
 		CompositeTransformationRule rule = TransformationRuleBuilder.buildCombinePowersRule();
@@ -191,14 +195,14 @@ class IssueTests {
 
 	@ParameterizedTest
 	@MethodSource("provideValuesIssue35Test")
-	void issue35(Functions f, Class<?> expectedType) {
+	void issue35_old(Functions f, Class<?> expectedType) {
 		FunctionNode node = FunctionNode.buildNode(f);
 		assertNotNull(node);
 		assertEquals(expectedType, node.getClass());
 	}
 
 	@Test
-	void issue36() {
+	void issue36_old() {
 		TransformationRuleParser.setParser(new LatexMathTransformationRuleParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("(((x*x)*x)*x)");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("(x^2*x)*x");
@@ -217,7 +221,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue38() {
+	void issue38_old() {
 		TransformationRuleParser.setParser(new LatexMathTransformationRuleParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("(a+b)*b");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("ab+bb");
@@ -230,14 +234,14 @@ class IssueTests {
 	}
 
 	@Test
-	void issue38_2() {
+	void issue38_2_old() {
 		TransformationRuleParser.setParser(new LatexMathTransformationRuleParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("b*(a+b)");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("ba+bb");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a(b+c) \\to ab+ac");
-		ExpressionNode actual=null;
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(start, true);
+			actual = rule.apply(start, true);
 		} catch (Exception e) {
 			fail("#38");
 		}
@@ -245,7 +249,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue33() {
+	void issue33_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("a_0");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("a_{00}");
@@ -253,7 +257,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue33_2() {
+	void issue33_2_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("a_0");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("a_00");
@@ -261,7 +265,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue34() {
+	void issue34_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("\\sum_{i=0}^{n}{a}");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("0");
@@ -275,7 +279,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue34_1() {
+	void issue34_1_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("\\sum_{i=0}^{n}{a}");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("n");
@@ -289,7 +293,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue34_2() {
+	void issue34_2_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("\\prod_{i=0}^{n}{a}");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("0");
@@ -303,7 +307,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue34_3() {
+	void issue34_3_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("\\prod_{i=0}^{n}{a}");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("n");
@@ -317,7 +321,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue40() {
+	void issue40_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("\\prod_{i=0}^{n}{a}");
 		SymbolTable st = SymbolTable.fromTree(start);
@@ -331,7 +335,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue40_2() {
+	void issue40_2_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("\\sum_{i=0}^{n}{a}");
 		SymbolTable st = SymbolTable.fromTree(start);
@@ -346,7 +350,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue34__40() {
+	void issue34__40_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("\\sum_{i=0}^{n}{a}");
 		SymbolTable st = SymbolTable.fromTree(start);
@@ -361,7 +365,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue34__40_2() {
+	void issue34__40_2_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("\\sum_{i=0}^{n}{a}");
 		SymbolTable st = SymbolTable.fromTree(start);
@@ -376,21 +380,21 @@ class IssueTests {
 	}
 
 	@Test
-	void issue41() {
+	void issue41_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("\\prod_{i=0}^{n}{a}");
 		assertEquals(start.getChildcount(), start.getChilds().size());
 	}
 
 	@Test
-	void issue41_2() {
+	void issue41_2_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("\\sum_{i=0}^{n}{a}");
 		assertEquals(start.getChildcount(), start.getChilds().size());
 	}
 
 	@Test
-	void issue39() {
+	void issue39_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("a_0");
 		ExpressionNode target = new TextNode("0");
@@ -404,7 +408,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue39_2() {
+	void issue39_2_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("a_n");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("n");
@@ -418,7 +422,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue39__33() {
+	void issue39__33_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("a_{00}");
 		ExpressionNode target = new TextNode("00");
@@ -432,7 +436,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue42() {
+	void issue42_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("a_n");
 		SymbolTable st = SymbolTable.fromTree(start);
@@ -448,7 +452,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue42_2() {
+	void issue42_2_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("a_0");
 		SymbolTable st = SymbolTable.fromTree(start);
@@ -464,28 +468,28 @@ class IssueTests {
 	}
 
 	@Test
-	void issue44() {
+	void issue44_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("a_0");
 		assertEquals(1, start.getChildcount());
 	}
 
 	@Test
-	void issue44_2() {
+	void issue44_2_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("a_i");
 		assertEquals(1, start.getChildcount());
 	}
 
 	@Test
-	void issue44_3() {
+	void issue44_3_old() {
 		ExpressionParser.setParser(new LatexMathExpressionParser());
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("a");
 		assertEquals(0, start.getChildcount());
 	}
 
 	@Test
-	void issue46() {
+	void issue46_old() {
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("2x+x");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("3x");
 		ExpressionNode target2 = ExpressionParser.buildExpressionTreeFromString("(2+1)x");
@@ -500,7 +504,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue45() {
+	void issue45_old() {
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("2a+3a+3b");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("(2+3)a+3b");
 		ExpressionNode target2 = ExpressionParser.buildExpressionTreeFromString("2a+(a+b)*3");
@@ -510,8 +514,8 @@ class IssueTests {
 		ExpressionNode transformed = null;
 		try {
 			transformed = prerule.apply(start);
-			if(transformed!=null) {
-				start=transformed;
+			if (transformed != null) {
+				start = transformed;
 			}
 			transformed = rule.apply(start);
 		} catch (Exception e) {
@@ -520,7 +524,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue48() {
+	void issue48_old() {
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("((a*b*2)+(a*a)+(b*b))");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("((((b*2)+1)*(a*a))+(1*(b*b)))");
 		CompositeTransformationRule prerule = TransformationRuleBuilder.buildNodeCombineRule();
@@ -536,7 +540,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue50() {
+	void issue50_old() {
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("(((a^2)*2)+((b^2)*2)+(a*b*2)+(a*b*2))");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("(1+1)*(a*b*2)+a^2*2+b^2*2");
 		CompositeTransformationRule prerule = TransformationRuleBuilder.buildNodeCombineRule();
@@ -544,18 +548,19 @@ class IssueTests {
 		ExpressionNode transformed = null;
 		try {
 			transformed = prerule.apply(start, true);
-			if(transformed!=null) {
-				start=transformed;
+			if (transformed != null) {
+				start = transformed;
 			}
 			transformed = rule.apply(start);
-			transformed=prerule.apply(transformed, true);
+			transformed = prerule.apply(transformed, true);
 		} catch (Exception e) {
 			fail("#50");
 		}
 		assertTrue(ExpressionUtil.isEqual(target, transformed));
 	}
+
 	@Test
-	void issue49() {
+	void issue49_old() {
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("(a^2)+(a^2)+(b^2)+(b^2)+(a*b*4)");
 		ExpressionNode target = ExpressionParser.buildExpressionTreeFromString("(1+1)a^2+(1+1)b^2+a*b*4");
 		CompositeTransformationRule prerule = TransformationRuleBuilder.buildNodeCombineRule();
@@ -563,12 +568,12 @@ class IssueTests {
 		ExpressionNode transformed = null;
 		try {
 			ExpressionNode transformedTarget = prerule.apply(target);
-			if(transformedTarget!=null) {
-				target=transformedTarget;
+			if (transformedTarget != null) {
+				target = transformedTarget;
 			}
 			transformed = prerule.apply(start);
-			if(transformed!=null) {
-				start=transformed;
+			if (transformed != null) {
+				start = transformed;
 			}
 			transformed = rule.apply(start);
 		} catch (Exception e) {
@@ -578,7 +583,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue54() {
+	void issue54_old() {
 		ExpressionNode c1 = ExpressionParser.buildExpressionTreeFromString("\\epsilon");
 		ExpressionNode c2 = ExpressionParser.buildExpressionTreeFromString("\\epsilon");
 		boolean equal = false;
@@ -592,7 +597,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue54_2() {
+	void issue54_2_old() {
 		ExpressionNode c1 = ExpressionParser.buildExpressionTreeFromString("\\epsilon+\\epsilon");
 		ExpressionNode c2 = ExpressionParser.buildExpressionTreeFromString("\\epsilon+\\epsilon");
 		boolean equal = false;
@@ -606,7 +611,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue58() {
+	void issue58_old() {
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("\\epsilon");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("\\epsilon \\to \\epsilon");
 		try {
@@ -618,7 +623,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue58_2() {
+	void issue58_2_old() {
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("1*\\epsilon");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("1*\\epsilon \\to \\epsilon");
 		try {
@@ -630,7 +635,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue58_3() {
+	void issue58_3_old() {
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("1*\\epsilon");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("\\epsilon \\to \\epsilon");
 		try {
@@ -642,7 +647,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue56() {
+	void issue56_old() {
 		ExpressionNode c1 = ExpressionParser.buildExpressionTreeFromString("\\log_{10}{2}");
 		ExpressionNode c2 = ExpressionParser.buildExpressionTreeFromString("\\lg{2}");
 		EqualityNode eq = new EqualityNode();
@@ -652,7 +657,7 @@ class IssueTests {
 	}
 
 	@Test
-	void issue70() {
+	void issue70_old() {
 		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("((2*x)+3)-3");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("(a-b) -> (a+(-(1)*b))");
 		CompositeTransformationRule postrule = TransformationRuleBuilder.buildNodeCombineRule();
@@ -660,14 +665,15 @@ class IssueTests {
 		ExpressionNode actual = null;
 		try {
 			actual = rule.apply(expression);
-			actual=postrule.apply(actual);
+			actual = postrule.apply(actual);
 		} catch (Exception e) {
 			fail("#70 failed: " + e.getMessage());
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue71() {
+	void issue71_old() {
 		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("(((2*x)+3)+(-(1)*3))");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a->a");
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("(((2*x)+3)+(-(1)*3))");
@@ -680,8 +686,9 @@ class IssueTests {
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue72() {
+	void issue72_old() {
 		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("1");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a->-a");
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("-1");
@@ -693,157 +700,172 @@ class IssueTests {
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue74() {
+	void issue74_old() {
 		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("-(a*1)");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*1->a");
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("-(a)");
-		ExpressionNode actual=null;
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(expression);
+			actual = rule.apply(expression);
 		} catch (Exception e) {
 			fail("#74 failed: " + e.getMessage());
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue74_nested() {
+	void issue74_nested_old() {
 		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("-((a*1)+b)");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*1->a");
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("-(a+b)");
-		ExpressionNode actual=null;
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(expression);
+			actual = rule.apply(expression);
 		} catch (Exception e) {
 			fail("#74_n failed: " + e.getMessage());
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue74_nnested() {
+	void issue74_nnested_old() {
 		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("-(b*(-b+(a*1)))");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*1->a");
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("-(b*(-b+a))");
-		ExpressionNode actual=null;
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(expression);
+			actual = rule.apply(expression);
 		} catch (Exception e) {
 			fail("#74_nn failed: " + e.getMessage());
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue74_possible() {
+	void issue74_possible_old() {
 		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("-(a*1)");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*1->a");
 		assertTrue(rule.isPossible(expression));
 	}
+
 	@Test
-	void issue74_nested_possible() {
+	void issue74_nested_possible_old() {
 		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("-((a*1)+b)");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*1->a");
 		assertTrue(rule.isPossible(expression));
 	}
+
 	@Test
-	void issue74_nnested_possible() {
+	void issue74_nnested_possible_old() {
 		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("-(b*(-b+(a*1)))");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*1->a");
 		assertTrue(rule.isPossible(expression));
 	}
+
 	@Test
-	void issue74_ta() {
+	void issue74_ta_old() {
 		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("-(a*1)");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*1->a");
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("-(a)");
-		ExpressionNode actual=null;
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(expression,true);
+			actual = rule.apply(expression, true);
 		} catch (Exception e) {
 			fail("#74 failed: " + e.getMessage());
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue74_nested_ta() {
+	void issue74_nested_ta_old() {
 		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("-((a*1)+b)");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*1->a");
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("-(a+b)");
-		ExpressionNode actual=null;
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(expression,true);
+			actual = rule.apply(expression, true);
 		} catch (Exception e) {
 			fail("#74_n_ta failed: " + e.getMessage());
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue74_nnested_ta() {
+	void issue74_nnested_ta_old() {
 		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("-(b*(-b+(a*1)))");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*1->a");
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("-(b*(-b+a))");
-		ExpressionNode actual=null;
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(expression,true);
+			actual = rule.apply(expression, true);
 		} catch (Exception e) {
 			fail("#74_nn_ta failed: " + e.getMessage());
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue74_ta_f() {
+	void issue74_ta_f_old() {
 		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("-(a*1)");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*1->a");
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("-(a)");
-		ExpressionNode actual=null;
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(expression,false);
+			actual = rule.apply(expression, false);
 		} catch (Exception e) {
 			fail("#74 failed: " + e.getMessage());
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue74_nested_ta_f() {
+	void issue74_nested_ta_f_old() {
 		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("-((a*1)+b)");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*1->a");
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("-(a+b)");
-		ExpressionNode actual=null;
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(expression,false);
+			actual = rule.apply(expression, false);
 		} catch (Exception e) {
 			fail("#74_n_ta_f failed: " + e.getMessage());
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue74_nnested_ta_f() {
+	void issue74_nnested_ta_f_old() {
 		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("-(b*(-b+(a*1)))");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*1->a");
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("-(b*(-b+a))");
-		ExpressionNode actual=null;
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(expression,false);
+			actual = rule.apply(expression, false);
 		} catch (Exception e) {
 			fail("#74_nn_ta_f failed: " + e.getMessage());
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue75() {
-		ExpressionNode expression=ExpressionParser.buildExpressionTreeFromString("(x+y)^2");		
-		GeneralTransformationRule transformationRule=TransformationRuleBuilder.buildRuleFromString("a+b->b+a");
-		boolean result = transformationRule.isPossible(expression,false);
+	void issue75_old() {
+		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("(x+y)^2");
+		GeneralTransformationRule transformationRule = TransformationRuleBuilder.buildRuleFromString("a+b->b+a");
+		boolean result = transformationRule.isPossible(expression, false);
 		assertFalse(result);
 	}
+
 	@Test
-	void issue75_2() {
-		ExpressionNode expression=ExpressionParser.buildExpressionTreeFromString("(x+y)^2");		
-		GeneralTransformationRule transformationRule=TransformationRuleBuilder.buildRuleFromString("a+b->b+a");
-		boolean result = transformationRule.isPossible(expression,true);
+	void issue75_2_old() {
+		ExpressionNode expression = ExpressionParser.buildExpressionTreeFromString("(x+y)^2");
+		GeneralTransformationRule transformationRule = TransformationRuleBuilder.buildRuleFromString("a+b->b+a");
+		boolean result = transformationRule.isPossible(expression, true);
 		assertTrue(result);
 	}
+
 	@Test
-	void issue77() {
+	void issue77_old() {
 		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("-((x*2))");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("(a*-(b)) -> -((a*b))");
 		ExpressionNode notExpexted = ExpressionParser.buildExpressionTreeFromString("(x*2)");
@@ -854,16 +876,17 @@ class IssueTests {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
 	}
+
 	@Test
-	void issue78() {
-		ExpressionNode start =  buildExpIssue78();
+	void issue78_old() {
+		ExpressionNode start = buildExpIssue78();
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("-1*a+a->0");
 		ExpressionNode notExpected = ExpressionParser.buildExpressionTreeFromString("0");
-		ExpressionNode actual=null;	
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(start,true);
+			actual = rule.apply(start, true);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -873,86 +896,95 @@ class IssueTests {
 
 	private ExpressionNode buildExpIssue78() {
 		MultiAddNode root = new MultiAddNode();
-		root.setChild(ExpressionParser.buildExpressionTreeFromString("(2*x)+3"),-1);
+		root.setChild(ExpressionParser.buildExpressionTreeFromString("(2*x)+3"), -1);
 		root.setChild(ExpressionParser.buildExpressionTreeFromString("-1*3"), -1);
 		return root;
 	}
+
 	@Test
-	void issue80() {
-		ExpressionNode start =  ExpressionParser.buildExpressionTreeFromString("0+x*2");
+	void issue80_old() {
+		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("0+x*2");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("0+a -> a");
 		ExpressionNode notExpected = ExpressionParser.buildExpressionTreeFromString("0");
-		ExpressionNode actual=null;	
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(start,true);
+			actual = rule.apply(start, true);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		assertNotEquals(notExpected, actual);
 	}
+
 	@Test
-	void issue82() {
-		ExpressionNode start =  ExpressionParser.buildExpressionTreeFromString("((a^2)+(2*a*b)+(b^2))+((a*a)+(a*b))+((b*a)+(b*b))");
+	void issue82_old() {
+		ExpressionNode start = ExpressionParser
+				.buildExpressionTreeFromString("((a^2)+(2*a*b)+(b^2))+((a*a)+(a*b))+((b*a)+(b*b))");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*a -> a^2");
-		ExpressionNode notExpected = ExpressionParser.buildExpressionTreeFromString("((a^2)+(2*a)+(b^2))+((a^2)+(a*b))+((b*a)+(b^2))");
-		ExpressionNode actual=null;	
+		ExpressionNode notExpected = ExpressionParser
+				.buildExpressionTreeFromString("((a^2)+(2*a)+(b^2))+((a^2)+(a*b))+((b*a)+(b^2))");
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(start,true);
+			actual = rule.apply(start, true);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		assertNotEquals(notExpected, actual);
 	}
+
 	@Test
-	void issue83() {
-		ExpressionNode start =  ExpressionParser.buildExpressionTreeFromString("x*x*y*y*z*z");
+	void issue83_old() {
+		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("x*x*y*y*z*z");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*a -> a^2");
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("x^2y^2z^2");
-		ExpressionNode actual=null;	
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(start,true);
+			actual = rule.apply(start, true);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue83_2() {
-		ExpressionNode start =  ExpressionParser.buildExpressionTreeFromString("x*x*y*y");
+	void issue83_2_old() {
+		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("x*x*y*y");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*a -> a^2");
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("x^2y^2");
-		ExpressionNode actual=null;	
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(start,true);
+			actual = rule.apply(start, true);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue84() {
-		String name="a";
-		SymbolIdentifier siObj=new SymbolIdentifier(name, null);
+	void issue84_old() {
+		String name = "a";
+		SymbolIdentifier siObj = new SymbolIdentifier(name, null);
 		assertTrue(siObj.equals(name));
 	}
+
 	@Test
-	void issue84_2() {
-		String name="a";
-		SymbolIdentifier siObj=new SymbolIdentifier(name, null);
+	void issue84_2_old() {
+		String name = "a";
+		SymbolIdentifier siObj = new SymbolIdentifier(name, null);
 		assertEquals(siObj.hashCode(), name.hashCode());
 	}
+
 	@Test
-	void issue85() {
-		ExpressionNode start =  ExpressionParser.buildExpressionTreeFromString("((a^2)+(a*b)+-((a*b))+-((b*b)))");
+	void issue85_old() {
+		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("((a^2)+(a*b)+-((a*b))+-((b*b)))");
 		CommonFactorCombinationRule2 rule = new CommonFactorCombinationRule2();
 		ExpressionNode expected = buildExpectedExpressionForIssue85();
-		ExpressionNode actual=null;	
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(start,true);
+			actual = rule.apply(start, true);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -961,98 +993,106 @@ class IssueTests {
 	}
 
 	private ExpressionNode buildExpectedExpressionForIssue85() {
-		ExpressionNode child1=buildChild1Issue85();
+		ExpressionNode child1 = buildChild1Issue85();
 		ExpressionNode full = ExpressionParser.buildExpressionTreeFromString("((2*(a*b))+(a^2)+-((b*b)))");
 		full.setChild(child1, 0);
 		return full;
 	}
 
 	private ExpressionNode buildChild1Issue85() {
-		ExpressionNode n=new MultiMultiplyNode();
+		ExpressionNode n = new MultiMultiplyNode();
 		n.setChild(new IntegerNode(2), -1);
 		n.setChild(ExpressionParser.buildExpressionTreeFromString("a*b"), -1);
 		return n;
 	}
-	
+
 	@Test
-	void issue_Nxt() {
-		ExpressionNode start =  ExpressionParser.buildExpressionTreeFromString("(((5*x)+(2*x*x))*3)");
+	void issue_Nxt_old() {
+		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("(((5*x)+(2*x*x))*3)");
 		GeneralTransformationRule rule = TransformationRuleBuilder.buildRuleFromString("a*a->a^2");
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("(((5*x)+(2*x^2))*3)");
-		ExpressionNode actual=null;
-		boolean possible=rule.isPossible(start);
+		ExpressionNode actual = null;
+		boolean possible = rule.isPossible(start);
 		System.out.println(possible);
 		try {
-			actual=rule.apply(start,false);
+			actual = rule.apply(start, false);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void testRepeatingRule() {
-		ExpressionNode start =  ExpressionParser.buildExpressionTreeFromString("x*x*y*y");
+	void testRepeatingRule_old() {
+		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("x*x*y*y");
 		GeneralTransformationRule embRule = TransformationRuleBuilder.buildRuleFromString("a*a -> a^2");
 		RepeatingTransformationRule rule = new RepeatingTransformationRule(embRule);
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("x^2y^2");
-		ExpressionNode actual=null;	
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(start,false);
+			actual = rule.apply(start, false);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void testCompositeRule() {
-		ExpressionNode start =  ExpressionParser.buildExpressionTreeFromString("x*x*y*1");
+	void testCompositeRule_old() {
+		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("x*x*y*1");
 		GeneralTransformationRule embRule = TransformationRuleBuilder.buildRuleFromString("a*a -> a^2");
 		GeneralTransformationRule embRule2 = TransformationRuleBuilder.buildRuleFromString("a*1 -> a");
 		CompositeTransformationRule rule = new CompositeTransformationRule();
 		rule.addChildRule(embRule);
 		rule.addChildRule(embRule2);
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("x^2y");
-		ExpressionNode actual=null;	
+		ExpressionNode actual = null;
 		try {
-			actual=rule.apply(start,false);
+			actual = rule.apply(start, false);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue86() {
-		ExpressionNode start =  ExpressionParser.buildExpressionTreeFromString("x^2*y*1");
+	void issue86_old() {
+		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("x^2*y*1");
 		GeneralTransformationRule embRule2 = TransformationRuleBuilder.buildRuleFromString("a*1 -> a");
 		ExpressionNode expected = ExpressionParser.buildExpressionTreeFromString("x^2y");
-		ExpressionNode actual=null;	
+		ExpressionNode actual = null;
 		try {
-			actual=embRule2.apply(start,false);
+			actual = embRule2.apply(start, false);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		assertEquals(expected, actual);
 	}
+
 	@Test
-	void issue86_2() {
-		ExpressionNode start =  ExpressionParser.buildExpressionTreeFromString("x^2*y*1");
+	void issue86_2_old() {
+		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("x^2*y*1");
 		GeneralTransformationRule embRule2 = TransformationRuleBuilder.buildRuleFromString("a*1 -> a");
 		assertTrue(embRule2.isPossible(start));
 	}
+
 	@Test
-	void issue87_2() {
-		ExpressionNode start =  ExpressionParser.buildExpressionTreeFromString("x*2+0");
+	void issue87_2_old() {
+		ExpressionNode start = ExpressionParser.buildExpressionTreeFromString("x*2+0");
 		GeneralTransformationRule embRule2 = TransformationRuleBuilder.buildRuleFromString("0+a -> a");
 		assertFalse(embRule2.isPossible(start));
 	}
+
 	@Test
 	void issue3() {
-		assertFalse(SymbolicEqualityUtil.checkSymbolicEquality("-(a+b)=a-b", SymbolicEqualityUtil.buildSimplificationRule()));
+		assertFalse(SymbolicEqualityUtil.checkSymbolicEquality("-(a+b)=a-b",
+				SymbolicEqualityUtil.buildSimplificationRule()));
 	}
+
 	@Test
 	void issue4() {
 		EquationNode start = EquationParser.buildEquationTreeFromString("1=1");
