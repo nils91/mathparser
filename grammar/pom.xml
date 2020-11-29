@@ -112,7 +112,7 @@
 		<java.version>1.8</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
-		<antlr4.version>4.8</antlr4.version>
+		<antlr4.version>4.9</antlr4.version>
 		<antlr4.visitor>true</antlr4.visitor>
 		<antlr4.listener>true</antlr4.listener>
 		<antlr4test-maven-plugin.version>1.14</antlr4test-maven-plugin.version>
