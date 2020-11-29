@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import de.dralle.mathparser.base.controller.AbstractMathParserServerController;
 import io.swagger.model.MessageEchoRequest;
 import io.swagger.model.MessageEchoResponse;
 
+@CrossOrigin(maxAge = 3600)
 @Controller
 @RequestMapping(RestCalls.TEST_ECHO)
 public class EchoController extends AbstractMathParserServerController<MessageEchoRequest, MessageEchoResponse> {
