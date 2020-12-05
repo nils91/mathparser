@@ -122,16 +122,6 @@
 			<artifactId>javassist</artifactId>
 			<version>3.12.1.GA</version>
 		</dependency>
-		<dependency>
-			<groupId>org.jboss.logging</groupId>
-			<artifactId>jboss-logging</artifactId>
-			<version>3.4.1.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.javaee</groupId>
-			<artifactId>jboss-transaction-api-1.0.1_spec</artifactId>
-			<version>5.0.2.GA</version>
-		</dependency>
 
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
