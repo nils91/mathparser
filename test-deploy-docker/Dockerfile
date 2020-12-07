@@ -15,4 +15,11 @@ WORKDIR /
 RUN git clone https://github.com/nils91/mathparser.git
 WORKDIR /mathparser/
 RUN git checkout ${branch}
+RUN git pull
+#build
+RUN mvn clean install
+#reset workdir
+WORKDIR /usr/local/tomcat/
+#copy war over to tomcat
+RUN cp /mathparser/deploy-debug/target/MathParserDev.war /usr/local/tomcat/webapps/
 CMD ls
