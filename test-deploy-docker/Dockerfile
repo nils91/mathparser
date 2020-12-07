@@ -22,4 +22,6 @@ RUN mvn clean install
 WORKDIR /usr/local/tomcat/
 #copy war over to tomcat
 RUN cp /mathparser/deploy-debug/target/MathParserDev.war /usr/local/tomcat/webapps/
-CMD ls
+#expose tomcat port
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
