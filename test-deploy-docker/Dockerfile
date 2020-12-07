@@ -6,6 +6,9 @@ RUN apt-get -y upgrade
 #install git and maven
 RUN apt-get -y install git
 RUN apt-get -y install maven
+#set workdir to root
+WORKDIR /
 #clone mathparser
 RUN git clone https://github.com/nils91/mathparser.git
-CMD ["catalina.sh", "run"]
+WORKDIR /mathparser/
+CMD ls
