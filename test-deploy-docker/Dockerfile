@@ -1,5 +1,8 @@
 FROM tomcat:9.0.40-jdk8-openjdk-buster
 MAINTAINER nils.91@googlemail.com
+#args for building
+#master is the default branch
+ARG branch=master
 #update
 RUN apt-get update
 RUN apt-get -y upgrade
@@ -11,4 +14,5 @@ WORKDIR /
 #clone mathparser
 RUN git clone https://github.com/nils91/mathparser.git
 WORKDIR /mathparser/
+RUN git checkout ${branch}
 CMD ls
