@@ -17,4 +17,6 @@ jobs:
       run: docker build --no-cache --build-arg branch=${{ steps.extract_branch.outputs.branch }} -t mathparser-docker:test ./test-deploy-docker/
     - name: Run container
       id: run_docker
-      run: docker run mathparser-docker:test java -version
+      run: docker run --cidfile container_id -p 8080:8080 mathparser-docker:test java -version
+    - name: Show container id
+      run: cat container_id
