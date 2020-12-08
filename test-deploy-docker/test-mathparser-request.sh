@@ -8,7 +8,7 @@ do
       echo Deployed correctly
       exit 0
    fi
-   sleep 1s
+   sleep 10s
 done
 echo Not deployed correctly
 exit 1
