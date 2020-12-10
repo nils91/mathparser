@@ -8,8 +8,9 @@ RUN apt-get update; apt-get -y install git maven
 #set workdir to root
 WORKDIR /
 #clone mathparser
-RUN git clone https://github.com/nils91/mathparser.git
+RUN mkdir /mathparser/
 WORKDIR /mathparser/
+RUN git clone https://github.com/nils91/mathparser.git .
 RUN git checkout ${branch}
 RUN git pull
 #build
