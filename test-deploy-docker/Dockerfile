@@ -3,11 +3,8 @@ MAINTAINER nils.91@googlemail.com
 #args for building
 #master is the default branch
 ARG branch=master
-#update install cache
-RUN apt-get update
-#install git and maven
-RUN apt-get -y install git
-RUN apt-get -y install maven
+#update install cache and install git and maven
+RUN apt-get update; apt-get -y install git maven
 #set workdir to root
 WORKDIR /
 #clone mathparser
