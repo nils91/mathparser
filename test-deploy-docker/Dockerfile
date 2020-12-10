@@ -3,9 +3,8 @@ MAINTAINER nils.91@googlemail.com
 #args for building
 #master is the default branch
 ARG branch=master
-#update
+#update install cache
 RUN apt-get update
-RUN apt-get -y upgrade
 #install git and maven
 RUN apt-get -y install git
 RUN apt-get -y install maven
