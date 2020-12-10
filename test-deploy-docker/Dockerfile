@@ -7,14 +7,10 @@ ARG branch=master
 RUN apt-get update; apt-get -y install git maven
 #set workdir to root
 WORKDIR /
-#clone mathparser
+#clone mathparser and built
 RUN mkdir /mathparser/
 WORKDIR /mathparser/
-RUN git clone https://github.com/nils91/mathparser.git .
-RUN git checkout ${branch}
-RUN git pull
-#build
-RUN mvn clean install
+RUN git clone https://github.com/nils91/mathparser.git . && git checkout ${branch} && git pull && mvn clean install
 #reset workdir
 WORKDIR /usr/local/tomcat/
 #copy war over to tomcat
