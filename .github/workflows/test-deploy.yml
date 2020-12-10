@@ -17,7 +17,7 @@ jobs:
       run: docker build --no-cache --build-arg branch=${{ steps.extract_branch.outputs.branch }} -t mathparser-docker:test ./test-deploy-docker/
     - name: Run container
       id: run_docker
-      run: docker run --name mathparser -p 8080:8080 --rm -d mathparser-docker:test
+      run: docker run --name mathparser -p 127.0.0.1:8080:8080 --rm -d mathparser-docker:test
     - name: Test correct deployment using the /test/ping request
       run: ./test-deploy-docker/test-mathparser-request.sh
     - name: Stop container
