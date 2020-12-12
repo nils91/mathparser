@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
@@ -1100,4 +1102,24 @@ class IssueTests {
 		EquationNode expected = EquationParser.buildEquationTreeFromString("1*x=1*x");
 		assertTrue(SymbolicEqualityUtil.checkEquivalizationTransform(start, expected, rule));
 	}
+
+	@Test
+	void issue39() { // this test is not to test the mathparser implementation, but instead is used
+						// to test if tests are executed at all. It checks for a file created by an
+						// github action, and if it exists, creates a new one for which the action can
+						// check
+		File originalToCheckFor = new File("../test/JUnitTestExecutionTestfile");
+		if (originalToCheckFor.exists()) {
+			File copy = new File(originalToCheckFor.getAbsoluteFile() + ".new");
+			try {
+				if (!copy.createNewFile()) {
+					fail();
+				}
+			} catch (IOException e) {
+				fail();
+			}
+		}
+
+	}
+
 }
