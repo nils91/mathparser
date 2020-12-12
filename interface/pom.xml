@@ -119,18 +119,6 @@
 			<version>2.7.0</version>
 		</dependency>
 		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback-version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<version>${logback-version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit-version}</version>
@@ -215,7 +203,6 @@
 		<jersey2-version>2.27</jersey2-version>
 		<jackson-version>2.12.0</jackson-version>
 		<junit-version>4.13.1</junit-version>
-		<logback-version>1.2.3</logback-version>
 		<servlet-api-version>2.5</servlet-api-version>
 		<beanvalidation-version>2.0.1.Final</beanvalidation-version>
 		<interface-file>interface/interface.yaml</interface-file>
