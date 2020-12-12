@@ -57,8 +57,10 @@
 							<configOptions>
 								<useBeanValidation>true</useBeanValidation>
 								<performBeanValidation>true</performBeanValidation>
-								<dateLibrary>java8</dateLibrary>
-								<java8>true</java8>
+								<!-- ok for jdk1.8+. See https://github.com/swagger-api/swagger-codegen/issues/7795 -->
+								<dateLibrary>java8</dateLibrary> <!-- Java 8 native JSR310 (preferred for jdk 1.8+) - note: this also sets 
+									"java8" to true -->
+								<java8>true</java8> <!-- Option. Use Java8 classes instead of third party equivalents -->
 							</configOptions>
 						</configuration>
 					</execution>

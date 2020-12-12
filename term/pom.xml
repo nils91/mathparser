@@ -33,7 +33,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
-						<source>${maven.compiler.source}</source>
+					<source>${maven.compiler.source}</source>
 					<target>${maven.compiler.target}</target>
 					<debug>true</debug>
 				</configuration>
@@ -56,7 +56,7 @@
 				<version>3.0.0-M4</version>
 				<configuration>
 					<skipTests>false</skipTests>
-				</configuration> 
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

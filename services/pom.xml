@@ -13,7 +13,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<name>mathparser-services</name>
-	<groupId>de.dralle.mathparser</groupId>	
+	<groupId>de.dralle.mathparser</groupId>
 	<artifactId>services</artifactId>
 	<packaging>jar</packaging>
 	<version>0.0.6</version>
@@ -67,7 +67,7 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -204,7 +204,7 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
-						<source>${maven.compiler.source}</source>
+					<source>${maven.compiler.source}</source>
 					<target>${maven.compiler.target}</target>
 					<debug>true</debug>
 				</configuration>
