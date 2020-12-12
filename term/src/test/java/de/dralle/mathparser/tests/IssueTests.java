@@ -1100,4 +1100,13 @@ class IssueTests {
 		EquationNode expected = EquationParser.buildEquationTreeFromString("1*x=1*x");
 		assertTrue(SymbolicEqualityUtil.checkEquivalizationTransform(start, expected, rule));
 	}
+
+	@Test
+	void issue39() { // this test is not to test the mathparser implementation, but instead is used
+						// to test if tests are executed at all. It checks for a file created by an
+						// github action, and if it exists, creates a copy for which the action can
+						// check
+
+	}
+
 }
