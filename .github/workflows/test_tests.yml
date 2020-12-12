@@ -19,6 +19,7 @@ jobs:
     - name: Test with Maven
       run: mvn clean test --file ./pom.xml    
     - name: Check if new file exist
+      shell: bash
       run: [ -f ./test/JUnitTestExecutionTestfile.new ]
     - name: Remove folder and files
       run: rm -rf ./test
