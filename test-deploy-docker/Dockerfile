@@ -1,4 +1,4 @@
-FROM tomcat:9.0.40-jdk8-openjdk-buster
+FROM tomcat:9.0.41-jdk11-openjdk-buster
 MAINTAINER nils.91@googlemail.com
 #args for building
 #master is the default branch
