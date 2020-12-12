@@ -18,8 +18,6 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<org.spring-integration.version>2.2.6.RELEASE</org.spring-integration.version>
-		<org.spring.security.version>3.1.2.RELEASE</org.spring.security.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>11</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
