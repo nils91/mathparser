@@ -42,7 +42,7 @@
 			<plugin>
 				<groupId>io.swagger.codegen.v3</groupId>
 				<artifactId>swagger-codegen-maven-plugin</artifactId>
-				<version>3.0.8</version>
+				<version>3.0.23</version>
 				<executions>
 					<execution>
 						<phase>generate-sources</phase>
@@ -201,7 +201,7 @@
 		<java.version>11</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
-		<swagger-core-version>2.0.9</swagger-core-version>
+		<swagger-core-version>2.0.10</swagger-core-version>
 		<jersey2-version>2.27</jersey2-version>
 		<jackson-version>2.12.0</jackson-version>
 		<junit-version>4.13.1</junit-version>
