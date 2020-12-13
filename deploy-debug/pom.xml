@@ -35,11 +35,6 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.24.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>5.4.3.Final</version>
-		</dependency>
 
 		<dependency>
 			<groupId>asm</groupId>
@@ -103,11 +98,6 @@
 			<groupId>javax.activation</groupId>
 			<artifactId>activation</artifactId>
 			<version>1.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz-oracle</artifactId>
-			<version>1.8.6</version>
 		</dependency>
 		<dependency>
 			<groupId>de.dralle.mathparser</groupId>
