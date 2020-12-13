@@ -141,8 +141,6 @@
 			<artifactId>interface</artifactId>
 			<version>0.1.5</version>
 		</dependency>
-
-
 	</dependencies>
 	<build>
 		<finalName>MathParserBase</finalName>
