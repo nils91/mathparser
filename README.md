@@ -33,6 +33,6 @@ An installed JRE/JDK is required to run the server. Tomcat uses the JAVA_HOME en
 
 ## Building the Server
 
-If you want to build the server, you need an installed [maven](https://maven.apache.org/download.cgi) and an installed JDK (JRE isn´t enough), for example [OpenJdk](https://openjdk.java.net/) 12. Then just run ```mvn clean install``` in the root directory of this project. After all submodules are built, the compiled .war can be found in [deploy-debug/target/MathParserDev.war](./deploy-debug/target/MathParserDev.war).
+If you want to build the server, you need an installed [maven](https://maven.apache.org/download.cgi) and an installed JDK (JRE isn´t enough), for example [OpenJdk](https://openjdk.java.net/) 11 or [AdoptOpenJDK](https://adoptopenjdk.net/) 11. The projects use Java 11. Then just run ```mvn clean install``` in the root directory of this project. After all submodules are built, the compiled .war can be found in [deploy-debug/target/MathParserDev.war](./deploy-debug/target/MathParserDev.war).
 
 [Github](https://github.com/nils91/mathparser/)
