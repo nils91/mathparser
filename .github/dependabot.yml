@@ -13,7 +13,7 @@ updates:
       interval: "daily"
 #update docker
   - package-ecosystem: "docker" # See documentation for possible values
-    directory: "/" # Location of package manifests
+    directory: "test-deploy-docker/" # Location of package manifests
     schedule:
       interval: "daily"
 #update actions
