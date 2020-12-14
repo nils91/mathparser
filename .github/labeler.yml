@@ -1,6 +1,6 @@
 # Config file for github pull request labeler
 # https://github.com/actions/labeler
-rep:
+root-project:
   - ./*
 github-config:
   - ./.github/*
