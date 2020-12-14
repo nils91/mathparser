@@ -3,7 +3,7 @@
 root_project:
   - ./*
 github_config:
-  - any: ['./.github/*', '!./.github/workflows*/']
+  - ./.github/*
 github_workflows:
   - ./.github/workflows/*
 maven:
