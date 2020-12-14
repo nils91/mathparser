@@ -1,0 +1,48 @@
+# Config file for github pull request labeler
+# https://github.com/actions/labeler
+root_project:
+- any: ['./*', !'./**/*']
+github_config:
+- any: ['./.github/*', !'./.github/workflows*/']
+github_workflows:
+  - ./.github/workflows/*
+maven:
+  - ./pom.xml
+  - ./**/pom.xml
+deploy_debug_project:
+  - ./deploy-debug/*
+  - ./deploy-debug/**/*
+term_project:
+  - ./term/*
+  - ./term/**/*
+services_project:
+  - ./services/*
+  - ./services/**/*
+interface_project:
+  - ./interface/*
+  - ./interface/**/*
+grammar_project:
+  - ./grammar/*
+  - ./grammar/**/*
+docker_project:
+  - ./test-deploy-docker/*
+  - ./test-deploy-docker/**/*
+java_source:
+  - ./*.java
+  - ./**/*.java
+test:
+  - ./*test*
+  - ./**/*test*
+  - ./*Test*
+  - ./**/*Test*
+junit:
+  - ./term/src/test/*.java
+  - ./term/src/test/**/*.java
+  - ./services/src/test/*.java
+  - ./services/src/test/**/*.java
+grammar:
+  - ./grammar/*.g4
+  - ./grammar/**/*.g4
+interface:
+  - ./interface/*.yaml
+  - ./interface/**/*.yaml
