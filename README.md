@@ -1,5 +1,7 @@
 # MathParser
 
+![Run all tests](https://github.com/nils91/mathparser/workflows/Run%20all%20tests/badge.svg) ![Test correct deployment](https://github.com/nils91/mathparser/workflows/Test%20correct%20deployment/badge.svg)
+
 Interface definition in [interface/interface/interface.yaml](./interface/interface/interface.yaml). Use [https://editor.swagger.io](https://editor.swagger.io) for syntax highlighting and codegen.
 
 ## Projects
