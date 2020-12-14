@@ -1,33 +1,33 @@
 # Config file for github pull request labeler
 # https://github.com/actions/labeler
-root_project:
+root-project:
   - ./*
-github_config:
+github-config:
   - ./.github/*
-github_workflows:
+github-workflows:
   - ./.github/workflows/*
 maven:
   - ./pom.xml
   - ./**/pom.xml
-deploy_debug_project:
+deploy-debug-project:
   - ./deploy-debug/*
   - ./deploy-debug/**/*
-term_project:
+term-project:
   - ./term/*
   - ./term/**/*
-services_project:
+services-project:
   - ./services/*
   - ./services/**/*
-interface_project:
+interface-project:
   - ./interface/*
   - ./interface/**/*
-grammar_project:
+grammar-project:
   - ./grammar/*
   - ./grammar/**/*
-docker_project:
+docker-project:
   - ./test-deploy-docker/*
   - ./test-deploy-docker/**/*
-java_source:
+java-source:
   - ./*.java
   - ./**/*.java
 test:
