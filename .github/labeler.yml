@@ -1,9 +1,9 @@
 # Config file for github pull request labeler
 # https://github.com/actions/labeler
 root_project:
-  - any: ['./*', '!./**/*']
+- any: ['./*', '!./**/*']
 github_config:
-  - any: ['./.github/*', '!./.github/workflows*/']
+- any: ['./.github/*', '!./.github/workflows*/']
 github_workflows:
   - ./.github/workflows/*
 maven:
