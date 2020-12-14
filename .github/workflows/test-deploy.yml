@@ -1,6 +1,6 @@
 name: "Test correct deployment"
 on:
-    [push]
+    [push, pull_request]
 jobs:
   build:
     name: build_deploy_docker

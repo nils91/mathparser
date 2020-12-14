@@ -1,6 +1,6 @@
 name: "Run all tests on windows"
 on:
-    [push]
+    [push, pull_request]
 jobs:
   build:
     name: run_tests_all_win

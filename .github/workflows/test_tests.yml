@@ -1,6 +1,6 @@
 name: "Test if JUnit tests are executed"
 on:
-    [push]
+    [push, pull_request]
 jobs:
   build:
     name: test_tests
