@@ -8,13 +8,18 @@ jobs:
     steps:
     - name: Check out
       uses: actions/checkout@v2.3.4
-    - name: Extract branch name 
-      id: extract_branch
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: '11'
+    - name: Build with Maven
+      run: mvn -Dmaven.test.skip=true clean install --file ./pom.xml
+    - name: Copy file
       shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"     
+      run: cp ./deploy-debug/target/MathParserDev.war ./test-deploy-docker/
     - name: Build docker image
       id: docker_build
-      run: docker build --no-cache --build-arg branch=${{ steps.extract_branch.outputs.branch }} -t mathparser-docker:test ./test-deploy-docker/
+      run: docker build --no-cache -t mathparser-docker:test ./test-deploy-docker/
     - name: Run container
       id: run_docker
       run: docker run --name mathparser -p 127.0.0.1:8080:8080 --rm -d mathparser-docker:test
