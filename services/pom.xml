@@ -57,8 +57,8 @@
 		<dependency> <!-- bean validation -->
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>6.0.21.Final</version>
-		</dependency>	
+			<version>6.0.22.Final</version>
+		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
