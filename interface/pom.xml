@@ -202,7 +202,7 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<swagger-core-version>2.0.10</swagger-core-version>
-		<jersey2-version>2.27</jersey2-version>
+		<jersey2-version>2.33</jersey2-version>
 		<jackson-version>2.12.0</jackson-version>
 		<junit-version>4.13.1</junit-version>
 		<servlet-api-version>2.5</servlet-api-version>
