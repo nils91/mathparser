@@ -10,6 +10,8 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
+	<!-- Packages the output of the previous step in a war-container for deployment 
+		on a tomcat server -->
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.dralle.mathparser</groupId>
 	<artifactId>deploy-debug</artifactId>
@@ -25,16 +27,6 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>1.8.0.10</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.activation</groupId>
-			<artifactId>activation</artifactId>
-			<version>1.1.1</version>
-		</dependency>
 		<dependency>
 			<groupId>de.dralle.mathparser</groupId>
 			<artifactId>services</artifactId>
