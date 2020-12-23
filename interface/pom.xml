@@ -134,13 +134,6 @@
 			<artifactId>jackson-core</artifactId>
 			<version>${jackson-version}</version>
 		</dependency>
-		<!-- Base64 encoding that works in both JVM and Android -->
-		<dependency>
-			<groupId>com.brsanthu</groupId>
-			<artifactId>migbase64</artifactId>
-			<version>2.2</version>
-		</dependency>
-
 
 		<!-- Bean Validation API support -->
 		<dependency>
